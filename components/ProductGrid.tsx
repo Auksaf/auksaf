@@ -1,111 +1,142 @@
-"use client";
-
-import { motion } from "framer-motion";
+import PerfumeBottle from "./PerfumeBottle";
 
 const products = [
   {
     name: "ROOH",
     subtitle: "The Aqua Elixir",
-    vibe: "Fresh • Atmospheric • Elegant",
-    status: "Available",
+    image: "/perfumes/rooh.png",
   },
   {
-    name: "NOIR",
-    subtitle: "Coming Soon",
-    vibe: "Dark • Smoky • Mysterious",
-    status: "In Development",
+    name: "ROOH",
+    subtitle: "Velvet Noir",
+    image: "/perfumes/rooh.png",
   },
   {
-    name: "SULTAN",
-    subtitle: "Coming Soon",
-    vibe: "Royal • Warm • Powerful",
-    status: "In Development",
+    name: "ROOH",
+    subtitle: "Midnight Ember",
+    image: "/perfumes/rooh.png",
+  },
+  {
+    name: "ROOH",
+    subtitle: "Silent Oud",
+    image: "/perfumes/rooh.png",
+  },
+  {
+    name: "ROOH",
+    subtitle: "Lunar Mist",
+    image: "/perfumes/rooh.png",
+  },
+  {
+    name: "ROOH",
+    subtitle: "Golden Smoke",
+    image: "/perfumes/rooh.png",
+  },
+  {
+    name: "ROOH",
+    subtitle: "Ivory Bloom",
+    image: "/perfumes/rooh.png",
+  },
+  {
+    name: "ROOH",
+    subtitle: "Obsidian Rain",
+    image: "/perfumes/rooh.png",
+  },
+  {
+    name: "ROOH",
+    subtitle: "Desert Veil",
+    image: "/perfumes/rooh.png",
+  },
+  {
+    name: "ROOH",
+    subtitle: "Crimson Aura",
+    image: "/perfumes/rooh.png",
+  },
+  {
+    name: "ROOH",
+    subtitle: "Frosted Amber",
+    image: "/perfumes/rooh.png",
+  },
+  {
+    name: "ROOH",
+    subtitle: "Noir Elixir",
+    image: "/perfumes/rooh.png",
   },
 ];
 
 export default function ProductGrid() {
   return (
-    <section className="relative z-10 py-24 md:py-32 xl:py-40 px-6">
+    <section className="relative z-10 py-28 md:py-40 px-6 border-t border-white/5">
 
-      <div className="max-w-7xl mx-auto">
+      {/* Ambient Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(198,169,114,0.05),transparent_55%)]" />
 
-        {/* Heading */}
-        <div className="text-center mb-16 sm:mb-24">
+      <div className="relative z-10 max-w-7xl mx-auto">
 
-          <p className="uppercase tracking-[0.35em] text-zinc-500 text-xs sm:text-sm mb-4 sm:mb-6">
-            Collection
+        {/* Section Header */}
+        <div className="text-center mb-20 md:mb-24">
+
+          <p className="uppercase tracking-[0.35em] text-zinc-500 text-xs sm:text-sm mb-5">
+            The ROOH Collection
           </p>
 
-          <h2 className="text-3xl sm:text-5xl md:text-7xl tracking-[0.15em] sm:tracking-[0.2em]">
-            Signature Fragrances
+          <h2 className="text-4xl md:text-6xl xl:text-7xl tracking-[0.18em]">
+            Signature Variants
           </h2>
 
-          <p className="mt-5 sm:mt-6 text-zinc-400 max-w-2xl mx-auto leading-relaxed text-sm sm:text-base px-2">
-            Crafted through atmosphere, elegance, and emotional identity —
-            fragrances designed to create unforgettable presence.
+          <p className="mt-6 text-zinc-400 max-w-2xl mx-auto leading-relaxed text-sm sm:text-base">
+            A cinematic fragrance universe crafted through atmosphere,
+            elegance, identity, and emotional presence.
           </p>
 
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-10">
+        {/* Product Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-14 md:gap-16">
 
           {products.map((product, index) => (
-
-            <motion.div
+            <div
               key={index}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.3 }}
-              className="group relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 sm:p-10"
+              className="group relative border border-white/5 rounded-[2rem] bg-white/[0.02] backdrop-blur-sm overflow-hidden hover:border-[#c6a972]/20 transition duration-500"
             >
 
-              {/* Glow */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-[radial-gradient(circle_at_top,rgba(198,169,114,0.15),transparent_55%)]" />
+              {/* Glow Effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-[radial-gradient(circle_at_top,rgba(198,169,114,0.10),transparent_60%)]" />
 
-              {/* Bottle Shape */}
-              <div className="relative flex justify-center mb-8 sm:mb-12">
+              <div className="relative p-10 md:p-12 flex flex-col items-center text-center">
 
-                <div className="w-[110px] sm:w-[140px] h-[200px] sm:h-[260px] rounded-[1.5rem] sm:rounded-[2rem] bg-gradient-to-b from-zinc-700 to-black border border-white/10 shadow-[0_0_60px_rgba(198,169,114,0.12)] flex items-center justify-center">
+                {/* Bottle */}
+                <div className="relative mb-10">
 
-                  <div className="text-center">
+                  <div className="absolute inset-0 scale-125 rounded-full bg-[#c6a972]/10 blur-3xl" />
 
-                    <p className="uppercase tracking-[0.3em] text-zinc-500 text-[9px] sm:text-[10px] mb-2 sm:mb-3">
-                      AUKSAF
-                    </p>
+                  <PerfumeBottle
+                    image={product.image}
+                    name={product.name}
+                    subtitle={product.subtitle}
+                  />
 
-                    <h3 className="text-2xl sm:text-3xl tracking-[0.2em]">
-                      {product.name}
-                    </h3>
+                </div>
 
-                  </div>
+                {/* Text */}
+                <div>
+
+                  <p className="uppercase tracking-[0.3em] text-zinc-500 text-[10px] mb-3">
+                    AUKSAF
+                  </p>
+
+                  <h3 className="text-2xl md:text-3xl tracking-[0.18em]">
+                    {product.name}
+                  </h3>
+
+                  <p className="mt-3 uppercase tracking-[0.25em] text-zinc-400 text-[11px]">
+                    {product.subtitle}
+                  </p>
 
                 </div>
 
               </div>
 
-              {/* Info */}
-              <div className="relative text-center">
-
-                <h3 className="text-2xl sm:text-3xl tracking-[0.15em] mb-3 sm:mb-4">
-                  {product.name}
-                </h3>
-
-                <p className="uppercase tracking-[0.25em] text-zinc-500 text-[10px] sm:text-xs mb-4 sm:mb-6">
-                  {product.subtitle}
-                </p>
-
-                <p className="text-zinc-400 leading-relaxed text-sm sm:text-base">
-                  {product.vibe}
-                </p>
-
-                <p className="mt-4 text-[10px] sm:text-xs uppercase tracking-[0.3em] text-zinc-600">
-                  {product.status}
-                </p>
-
-              </div>
-
-            </motion.div>
-
+            </div>
           ))}
 
         </div>
