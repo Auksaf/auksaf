@@ -1,6 +1,6 @@
 export default function BrandManifesto() {
   return (
-    <section className="relative z-10 py-28 md:py-36 xl:py-44 px-6 overflow-hidden">
+    <section className="relative z-10 py-32 md:py-40 px-6 border-t border-white/5 bg-gradient-to-b from-black to-zinc-950/60">
 
       {/* Ambient Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(198,169,114,0.06),transparent_50%)]" />
@@ -24,7 +24,7 @@ export default function BrandManifesto() {
         </h2>
 
         {/* Description */}
-        <p className="mt-10 md:mt-16 text-zinc-400 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
+        <p className="mt-10 md:mt-16 text-zinc-300 leading-relaxed text-lg md:text-xl max-w-4xl mx-auto">
 
           AUKSAF was created to transform scent into atmosphere,
           to craft fragrances that feel cinematic, emotional, elegant,

@@ -25,7 +25,7 @@ export default function Home() {
         <SmoothScroll />
 
         {/* Background atmosphere */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(198,169,114,0.12),transparent_35%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(198,169,114,0.10),transparent_40%)]" />
 
         <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[500px] sm:w-[700px] h-[500px] sm:h-[700px] bg-[#c6a972]/10 blur-3xl rounded-full" />
 
@@ -49,7 +49,7 @@ export default function Home() {
                   AUKSAF
                 </h1>
 
-                <p className="mt-8 text-zinc-400 text-sm sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+                <p className="mt-8 text-zinc-400 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
                   Crafted through elegance, depth, and identity fragrances designed to leave presence behind.
                 </p>
 
@@ -110,9 +110,9 @@ export default function Home() {
 
         {/* ABOUT */}
         <section
-          id="about"
-          className="relative z-10 py-24 md:py-32 px-6 border-t border-white/5"
-        >
+  id="about"
+  className="relative z-10 py-28 md:py-36 px-6 border-t border-white/5 bg-zinc-950/40"
+>
           <Reveal>
 
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
@@ -147,9 +147,9 @@ export default function Home() {
 
         {/* COLLECTIONS */}
         <section
-          id="collections"
-          className="relative z-10 py-28 md:py-40 px-6 overflow-hidden"
-        >
+  id="collections"
+  className="relative z-10 py-32 md:py-44 px-6 overflow-hidden border-t border-white/5"
+>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(198,169,114,0.08),transparent_45%)]" />
 
           <Reveal>
@@ -162,7 +162,7 @@ export default function Home() {
                   Signature Creation
                 </p>
 
-                <h2 className="text-5xl md:text-7xl tracking-[0.2em]">
+                <h2 className="text-5xl md:text-7xl tracking-[0.18em] font-light">
                   ROOH
                 </h2>
 
@@ -235,7 +235,7 @@ export default function Home() {
         </section>
 
         {/* PRICING */}
-        <section className="relative z-10 py-24 px-6 border-t border-white/5">
+        <section className="relative z-10 py-28 md:py-36 px-6 border-t border-white/5 bg-zinc-950/30">
 
           <Reveal>
 
