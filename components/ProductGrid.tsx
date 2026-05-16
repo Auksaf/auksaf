@@ -1,67 +1,6 @@
 import PerfumeBottle from "./PerfumeBottle";
+import { products } from "../lib/products";
 
-const products = [
-  {
-    name: "ROOH",
-    subtitle: "The Aqua Elixir",
-    image: "/perfumes/rooh.png",
-  },
-  {
-    name: "ROOH",
-    subtitle: "Velvet Noir",
-    image: "/perfumes/rooh.png",
-  },
-  {
-    name: "ROOH",
-    subtitle: "Midnight Ember",
-    image: "/perfumes/rooh.png",
-  },
-  {
-    name: "ROOH",
-    subtitle: "Silent Oud",
-    image: "/perfumes/rooh.png",
-  },
-  {
-    name: "ROOH",
-    subtitle: "Lunar Mist",
-    image: "/perfumes/rooh.png",
-  },
-  {
-    name: "ROOH",
-    subtitle: "Golden Smoke",
-    image: "/perfumes/rooh.png",
-  },
-  {
-    name: "ROOH",
-    subtitle: "Ivory Bloom",
-    image: "/perfumes/rooh.png",
-  },
-  {
-    name: "ROOH",
-    subtitle: "Obsidian Rain",
-    image: "/perfumes/rooh.png",
-  },
-  {
-    name: "ROOH",
-    subtitle: "Desert Veil",
-    image: "/perfumes/rooh.png",
-  },
-  {
-    name: "ROOH",
-    subtitle: "Crimson Aura",
-    image: "/perfumes/rooh.png",
-  },
-  {
-    name: "ROOH",
-    subtitle: "Frosted Amber",
-    image: "/perfumes/rooh.png",
-  },
-  {
-    name: "ROOH",
-    subtitle: "Noir Elixir",
-    image: "/perfumes/rooh.png",
-  },
-];
 
 export default function ProductGrid() {
   return (
