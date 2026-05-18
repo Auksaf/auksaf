@@ -7,74 +7,99 @@ export default function OrderPage() {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
+
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [orderId, setOrderId] = useState("");
 
   const product = "ROOH - The Aqua Elixir (50ML)";
   const price = 2499;
 
-  const whatsappNumber = "923024255245";
-
-  const handleOrder = () => {
+  const handleOrder = async () => {
     if (!name || !phone || !address || !city) {
       alert("Please fill all required fields");
       return;
     }
 
-    const orderCode = `AUK-${Date.now().toString().slice(-6)}`;
+    try {
+      setLoading(true);
+      setSuccess(false);
 
-    const message = `
-🧴 AUKSAF ORDER REQUEST
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          city,
+          address,
+          product,
+          price,
+          quantity: 1,
+        }),
+      });
 
-🆔 Order Code: ${orderCode}
+      const data = await res.json();
 
-📦 Product: ${product}
-💰 Price: Rs. ${price}
+      if (data.success) {
+        setSuccess(true);
+        setOrderId(data.orderId);
 
-👤 Name: ${name}
-📱 Phone: ${phone}
-🏙 City: ${city}
-🏠 Address: ${address}
+        setName("");
+        setPhone("");
+        setCity("");
+        setAddress("");
+      } else {
+        alert("Failed to submit order. Please try again.");
+      }
 
-💳 Payment Preference:
-${paymentMethod}
-
-Thank you for choosing AUKSAF.
-    `;
-
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      message
-    )}`;
-
-    window.open(url, "_blank");
-  };
-
-  const handleJazzCashRequest = () => {
-    const message = `
-Hi AUKSAF,
-
-I would like to pay for my ROOH order via JazzCash.
-Please share payment details.
-    `;
-
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      message
-    )}`;
-
-    window.open(url, "_blank");
+    } catch (err) {
+      console.error(err);
+      alert("Server error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center px-6 py-16">
 
-      <div className="w-full max-w-xl border border-white/10 rounded-[2rem] p-8 md:p-10 bg-white/[0.03] backdrop-blur-xl">
+      <div className="w-full max-w-xl border border-white/10 rounded-[2rem] p-8 md:p-10 bg-white/[0.03] backdrop-blur-xl relative">
+
+        {/* CLOSE BUTTON */}
+        <div className="absolute top-6 right-6">
+
+          <a
+            href="/"
+            className="text-zinc-500 hover:text-white transition uppercase tracking-[0.18em] text-xs"
+          >
+            Close ✕
+          </a>
+
+        </div>
 
         <h1 className="text-3xl md:text-4xl tracking-[0.25em] text-center">
           PLACE YOUR ORDER
         </h1>
 
-        <p className="text-zinc-400 text-sm text-center mt-3 mb-10 tracking-[0.08em]">
+        <p className="text-zinc-400 text-sm text-center mt-3 mb-8 tracking-[0.08em]">
           ROOH — The Aqua Elixir | 50ML
         </p>
+
+        {/* SUCCESS MESSAGE */}
+        {success && (
+          <div className="mb-6 p-4 rounded-2xl border border-green-500/30 bg-green-500/10 text-green-300 text-center text-sm">
+            🎉 Order submitted successfully!
+            <br />
+
+            <span className="text-white/70">
+              Your Order ID: {orderId}
+            </span>
+
+          </div>
+        )}
 
         <div className="space-y-5">
 
@@ -110,45 +135,22 @@ Please share payment details.
             onChange={(e) => setAddress(e.target.value)}
           />
 
-          <div className="space-y-3 pt-2">
-
-            <p className="text-sm uppercase tracking-[0.18em] text-zinc-400">
-              Payment Preference
-            </p>
-
-            <select
-              value={paymentMethod}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-              className="w-full p-4 bg-black border border-white/10 rounded-2xl outline-none focus:border-[#c6a972]/40 transition"
-            >
-              <option>Cash on Delivery</option>
-              <option>JazzCash</option>
-            </select>
-
-          </div>
-
           <button
             onClick={handleOrder}
-            className="w-full bg-white text-black py-4 rounded-2xl uppercase tracking-[0.22em] hover:bg-zinc-200 transition mt-4"
+            disabled={loading}
+            className="w-full bg-white text-black py-4 rounded-2xl uppercase tracking-[0.22em] hover:bg-zinc-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Order via WhatsApp
-          </button>
-
-          <button
-            onClick={handleJazzCashRequest}
-            className="w-full border border-[#c6a972]/30 hover:border-[#c6a972] text-[#c6a972] py-4 rounded-2xl uppercase tracking-[0.22em] transition"
-          >
-            Request JazzCash Details
+            {loading ? "Processing Order..." : "Submit Order"}
           </button>
 
           <div className="pt-4 text-center space-y-2">
 
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Choose Cash on Delivery or request JazzCash payment details directly on WhatsApp.
+              Your order will be confirmed by our team shortly after submission.
             </p>
 
             <p className="text-xs text-zinc-600">
-              Pakistan nationwide delivery available.
+              Secure processing • Pakistan nationwide delivery
             </p>
 
           </div>
