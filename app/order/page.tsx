@@ -81,17 +81,19 @@ export default function OrderPage() {
         </div>
 
         <h1 className="text-3xl md:text-4xl tracking-[0.25em] text-center">
-          PLACE YOUR ORDER
+          Reserve Your Bottle
         </h1>
 
         <p className="text-zinc-400 text-sm text-center mt-3 mb-8 tracking-[0.08em]">
-          ROOH — The Aqua Elixir | 50ML
+          ROOH — The Aqua Elixir • Signature Launch Edition
         </p>
 
         {/* SUCCESS MESSAGE */}
         {success && (
           <div className="mb-6 p-4 rounded-2xl border border-green-500/30 bg-green-500/10 text-green-300 text-center text-sm">
-            🎉 Order submitted successfully!
+            🎉 Your ROOH bottle has been reserved successfully.
+
+Our team will contact you shortly to confirm your order.
             <br />
 
             <span className="text-white/70">
@@ -140,8 +142,12 @@ export default function OrderPage() {
             disabled={loading}
             className="w-full bg-white text-black py-4 rounded-2xl uppercase tracking-[0.22em] hover:bg-zinc-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? "Processing Order..." : "Submit Order"}
+            {loading ? "Reserving Your Bottle..." : "Reserve My Bottle"}
           </button>
+
+          <p className="text-center text-xs text-[#c6a972] tracking-[0.18em] uppercase mt-3">
+  Limited launch batch currently available.
+</p>
 
           <div className="pt-4 text-center space-y-2">
 
@@ -150,7 +156,7 @@ export default function OrderPage() {
             </p>
 
             <p className="text-xs text-zinc-600">
-              Secure processing • Pakistan nationwide delivery
+              Nationwide delivery across Pakistan • Confirmation via phone before dispatch
             </p>
 
           </div>
