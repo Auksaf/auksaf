@@ -130,12 +130,12 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="absolute top-[110%] left-0 w-full rounded-2xl border border-white/10 bg-black/90 backdrop-blur-2xl p-6 flex flex-col gap-6 md:hidden"
+                className="absolute top-[110%] left-0 w-full rounded-2xl border border-[#c6a972]/20 bg-[#0b0b0b]/95 backdrop-blur-2xl p-6 flex flex-col gap-6 md:hidden shadow-[0_10px_60px_rgba(0,0,0,0.55)]"
               >
                 <a
                   href="#home"
                   onClick={() => setMobileMenu(false)}
-                  className="uppercase tracking-[0.2em] text-sm text-zinc-300 hover:text-white transition"
+                  className="uppercase tracking-[0.2em] text-sm text-zinc-400 hover:text-[#c6a972]"
                 >
                   Home
                 </a>
@@ -143,7 +143,7 @@ export default function Navbar() {
                 <a
                   href="#collections"
                   onClick={() => setMobileMenu(false)}
-                  className="uppercase tracking-[0.2em] text-sm text-zinc-300 hover:text-white transition"
+                  className="uppercase tracking-[0.2em] text-sm text-zinc-400 hover:text-[#c6a972]"
                 >
                   Collections
                 </a>
@@ -151,7 +151,7 @@ export default function Navbar() {
                 <a
                   href="#about"
                   onClick={() => setMobileMenu(false)}
-                  className="uppercase tracking-[0.2em] text-sm text-zinc-300 hover:text-white transition"
+                  className="uppercase tracking-[0.2em] text-sm text-zinc-400 hover:text-[#c6a972]"
                 >
                   About
                 </a>
@@ -159,7 +159,7 @@ export default function Navbar() {
                 <a
                   href="#contact"
                   onClick={() => setMobileMenu(false)}
-                  className="uppercase tracking-[0.2em] text-sm text-zinc-300 hover:text-white transition"
+                  className="uppercase tracking-[0.2em] text-sm text-zinc-400 hover:text-[#c6a972]"
                 >
                   Contact
                 </a>
