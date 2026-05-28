@@ -132,7 +132,7 @@ export default function Home() {
                 </p>
 
                 <p className="mt-8 text-zinc-500 leading-relaxed text-sm sm:text-base">
-                  Crafted with a modern luxury approach, our creations aim to balance
+                  Crafted by msj with a modern luxury approach, our creations aim to balance
                   sophistication, projection, and atmosphere into a signature experience.
                 </p>
               </div>

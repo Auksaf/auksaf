@@ -140,6 +140,40 @@ export default function Footer() {
 
               </div>
 
+              {/* POLICIES */}
+              <div className="pt-8 border-t border-white/5">
+
+                <p className="uppercase tracking-[0.3em] text-zinc-500 text-[10px] md:text-xs mb-5">
+                  Policies
+                </p>
+
+                <div className="flex flex-col gap-4 text-sm md:text-base">
+
+                  <a
+                    href="/terms"
+                    className="text-zinc-300 hover:text-white transition duration-300 w-fit"
+                  >
+                    Terms & Conditions
+                  </a>
+
+                  <a
+                    href="/return-policy"
+                    className="text-zinc-300 hover:text-white transition duration-300 w-fit"
+                  >
+                    Return Policy
+                  </a>
+
+                  <a
+                    href="/privacy-policy"
+                    className="text-zinc-300 hover:text-white transition duration-300 w-fit"
+                  >
+                    Privacy Policy
+                  </a>
+
+                </div>
+
+              </div>
+
             </div>
 
           </div>
