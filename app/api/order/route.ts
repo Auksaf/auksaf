@@ -1,62 +1,79 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Supabase client (server-side safe usage)
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
+
+// Resend email client
+const resend = new Resend(process.env.RESEND_API_KEY!);
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    console.log("Order received:", body);
 
     const { name, phone, city, address, product, price, quantity } = body;
 
-    const orderId = `AUK-${Date.now().toString().slice(-6)}`;
+    console.log("Order received:", body);
 
-    const response = await resend.emails.send({
+    // 1. SAVE ORDER IN SUPABASE
+    const { data, error } = await supabase
+      .from("orders")
+      .insert([
+        {
+          name,
+          phone,
+          city,
+          address,
+          product,
+          price,
+          quantity,
+          status: "Pending",
+        },
+      ])
+      .select()
+      .single();
+
+    if (error) {
+      console.error("Supabase error:", error);
+      return NextResponse.json(
+        { success: false, message: "Database error" },
+        { status: 500 }
+      );
+    }
+
+    // 2. SEND EMAIL VIA RESEND
+    await resend.emails.send({
       from: "AUKSAF <onboarding@resend.dev>",
       to: "anwarsanwar30@gmail.com",
-      subject: `New Order Received - ${orderId}`,
+      subject: "New Order Received - AUKSAF",
       html: `
-        <div style="font-family: Arial; padding: 20px;">
-          <h2>🧴 AUKSAF NEW ORDER</h2>
-
-          <p><strong>Order ID:</strong> ${orderId}</p>
-          <hr />
-
-          <p><strong>Product:</strong> ${product}</p>
-          <p><strong>Price:</strong> Rs. ${price}</p>
-          <p><strong>Quantity:</strong> ${quantity || 1}</p>
-
-          <hr />
-
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Phone:</strong> ${phone}</p>
-          <p><strong>City:</strong> ${city}</p>
-          <p><strong>Address:</strong> ${address}</p>
-
-          <hr />
-
-          <p style="color: #888;">
-            ⚡ This order was placed from AUKSAF website
-          </p>
-        </div>
+        <h2>New Order Received</h2>
+        <p><b>Name:</b> ${name}</p>
+        <p><b>Phone:</b> ${phone}</p>
+        <p><b>City:</b> ${city}</p>
+        <p><b>Address:</b> ${address}</p>
+        <p><b>Product:</b> ${product}</p>
+        <p><b>Price:</b> Rs ${price}</p>
+        <p><b>Quantity:</b> ${quantity}</p>
+        <hr/>
+        <p><b>Order ID:</b> ${data.id}</p>
       `,
     });
-    console.log("Resend response:", response);
 
+    // 3. RETURN RESPONSE TO FRONTEND
     return NextResponse.json({
       success: true,
-      orderId,
+      orderId: data.id,
     });
 
-  } catch (error) {
-    console.error(error);
-
+  } catch (err) {
+    console.error(err);
     return NextResponse.json(
-      {
-        success: false,
-        error: "Failed to process order",
-      },
+      { success: false, error: "Server error" },
       { status: 500 }
     );
   }
