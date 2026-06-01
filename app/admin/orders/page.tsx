@@ -4,6 +4,7 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import StatusSelect from "./StatusSelect";
+import LogoutButton from "@/components/LogoutButton";
 
 // ---------------------------
 // SUPABASE CLIENT (TOP LEVEL ONLY)
@@ -63,14 +64,19 @@ console.log("ERROR:", error);
 
   return (
     <div className="min-h-screen bg-black text-white p-6 md:p-10">
-      <div className="mb-10">
-        <h1 className="text-3xl md:text-5xl font-bold tracking-wide">
-          AUKSAF Orders
-        </h1>
-        <p className="text-zinc-400 mt-3 text-sm md:text-base">
-          Internal Order Management Dashboard
-        </p>
-      </div>
+      <div className="mb-10 flex items-start justify-between">
+  <div>
+    <h1 className="text-3xl md:text-5xl font-bold tracking-wide">
+      AUKSAF Orders
+    </h1>
+
+    <p className="text-zinc-400 mt-3 text-sm md:text-base">
+      Internal Order Management Dashboard
+    </p>
+  </div>
+
+  <LogoutButton />
+</div>
 
       <div className="overflow-x-auto border border-white/10 rounded-2xl bg-white/5 backdrop-blur-md">
         <table className="w-full min-w-[1000px] text-left">
