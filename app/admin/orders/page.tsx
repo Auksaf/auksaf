@@ -1,123 +1,88 @@
-export const dynamic = "force-dynamic";
+"use client";
 
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import StatusSelect from "./StatusSelect";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 import LogoutButton from "@/components/LogoutButton";
+import StatusSelect from "./StatusSelect";
 
-// ---------------------------
-// SUPABASE CLIENT (TOP LEVEL ONLY)
-// ---------------------------
-async function getSupabase() {
-  const cookieStore = await cookies();
+export default function OrdersPage() {
+  const router = useRouter();
+  const [orders, setOrders] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-        set() {},
-        remove() {},
-      },
-    }
-  );
-}
+  useEffect(() => {
+    const load = async () => {
+      const { data } = await supabase.auth.getUser();
 
-export default async function OrdersPage() {
-  const supabase = await getSupabase();
+      if (!data.user) {
+        router.replace("/admin/login");
+        return;
+      }
 
-  // ---------------------------
-  // AUTH CHECK
-  // ---------------------------
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+      const { data: ordersData } = await supabase
+        .from("orders")
+        .select("*")
+        .order("created_at", { ascending: false });
 
-  if (!user) {
-    redirect("/admin/login");
-  }
+      setOrders(ordersData || []);
+      setLoading(false);
+    };
 
-  // ---------------------------
-  // FETCH ORDERS
-  // ---------------------------
-  const { data: orders, error } = await supabase
-  .from("orders")
-  .select("*")
-  .order("created_at", { ascending: false });
+    load();
+  }, [router]);
 
-console.log("USER:", user?.email);
-console.log("ORDERS:", orders);
-console.log("ERROR:", error);
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-black text-white p-10">
-        <h1 className="text-2xl font-bold mb-4">Admin Orders</h1>
-        <p className="text-red-500">Failed to load orders.</p>
-      </div>
-    );
+  if (loading) {
+    return <div className="text-white">Loading...</div>;
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-6 md:p-10">
-      <div className="mb-10 flex items-start justify-between">
-  <div>
-    <h1 className="text-3xl md:text-5xl font-bold tracking-wide">
-      AUKSAF Orders
-    </h1>
+    <div className="min-h-screen bg-black text-white p-6">
+      <div className="flex justify-between mb-6">
+        <h1 className="text-3xl font-bold">AUKSAF Orders</h1>
+        <LogoutButton />
+      </div>
 
-    <p className="text-zinc-400 mt-3 text-sm md:text-base">
-      Internal Order Management Dashboard
-    </p>
-  </div>
+      <div className="overflow-x-auto border border-white/10 rounded-2xl bg-white/5">
+        <table className="w-full text-left">
 
-  <LogoutButton />
-</div>
-
-      <div className="overflow-x-auto border border-white/10 rounded-2xl bg-white/5 backdrop-blur-md">
-        <table className="w-full min-w-[1000px] text-left">
-
-          <thead className="border-b border-white/10 bg-white/5">
+          <thead>
             <tr>
-              <th className="p-4 text-sm uppercase text-zinc-400">Customer</th>
-              <th className="p-4 text-sm uppercase text-zinc-400">Phone</th>
-              <th className="p-4 text-sm uppercase text-zinc-400">City</th>
-              <th className="p-4 text-sm uppercase text-zinc-400">Product</th>
-              <th className="p-4 text-sm uppercase text-zinc-400">Qty</th>
-              <th className="p-4 text-sm uppercase text-zinc-400">Price</th>
-              <th className="p-4 text-sm uppercase text-zinc-400">Status</th>
-              <th className="p-4 text-sm uppercase text-zinc-400">Date</th>
+              <th className="p-3">Customer</th>
+              <th className="p-3">Phone</th>
+              <th className="p-3">City</th>
+              <th className="p-3">Product</th>
+              <th className="p-3">Qty</th>
+              <th className="p-3">Price</th>
+              <th className="p-3">Status</th>
+              <th className="p-3">Date</th>
             </tr>
           </thead>
 
           <tbody>
-            {orders?.map((order) => (
-              <tr key={order.id} className="border-b border-white/5 hover:bg-white/5">
+            {orders.map((o) => (
+              <tr key={o.id} className="border-t border-white/10">
 
-                <td className="p-4">
-                  <p className="text-white font-medium">{order.name}</p>
-                  <p className="text-xs text-zinc-500">{order.address}</p>
+                <td className="p-3">
+                  <div>{o.name}</div>
+                  <div className="text-xs text-gray-400">{o.address}</div>
                 </td>
 
-                <td className="p-4 text-zinc-300">{order.phone}</td>
-                <td className="p-4 text-zinc-300">{order.city}</td>
-                <td className="p-4 text-zinc-300">{order.product}</td>
-                <td className="p-4 text-zinc-300">{order.quantity}</td>
-                <td className="p-4 text-zinc-300">Rs. {order.price}</td>
+                <td className="p-3">{o.phone}</td>
+                <td className="p-3">{o.city}</td>
+                <td className="p-3">{o.product}</td>
+                <td className="p-3">{o.quantity}</td>
+                <td className="p-3">Rs. {o.price}</td>
 
-                <td className="p-4">
+                <td className="p-3">
                   <StatusSelect
-                    id={order.id}
-                    currentStatus={order.status}
+                    id={o.id}
+                    currentStatus={o.status}
                   />
                 </td>
 
-                <td className="p-4 text-zinc-500 text-sm">
-                  {new Date(order.created_at).toLocaleString()}
+                <td className="p-3 text-sm text-gray-400">
+                  {new Date(o.created_at).toLocaleString()}
                 </td>
 
               </tr>

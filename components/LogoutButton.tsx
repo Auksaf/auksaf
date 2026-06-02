@@ -1,15 +1,17 @@
 "use client";
 
 import { supabase } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 
 export default function LogoutButton() {
+  const router = useRouter();
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
 
-    // safe redirect (avoids Next.js router crash in dev mode)
-    setTimeout(() => {
-      window.location.href = "/admin/login";
-    }, 100);
+    // force clean redirect
+    router.replace("/admin/login");
+    router.refresh();
   };
 
   return (
