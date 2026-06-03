@@ -9,8 +9,8 @@ export default function LogoutButton() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
 
-    // force clean redirect
-    router.replace("/admin/login");
+    // Return to website homepage after logout
+    router.replace("/");
     router.refresh();
   };
 
