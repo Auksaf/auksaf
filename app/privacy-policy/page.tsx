@@ -1,6 +1,10 @@
+import SiteHeader from "@/components/SiteHeader";
+
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-black text-white px-6 py-24">
+
+<SiteHeader />
 
       <div className="max-w-4xl mx-auto">
 

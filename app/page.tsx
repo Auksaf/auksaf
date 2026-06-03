@@ -6,6 +6,7 @@ import SmoothScroll from "../components/SmoothScroll";
 import ProductGrid from "../components/ProductGrid";
 import BrandManifesto from "../components/BrandManifesto";
 import PerfumeBottle from "../components/PerfumeBottle";
+import SiteHeader from "@/components/SiteHeader";
 
 export default function Home() {
   return (
