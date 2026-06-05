@@ -90,18 +90,22 @@ export default function OrderPage() {
 
         {/* SUCCESS MESSAGE */}
         {success && (
-          <div className="mb-6 p-4 rounded-2xl border border-green-500/30 bg-green-500/10 text-green-300 text-center text-sm">
-            🎉 Your ROOH bottle has been reserved successfully.
+  <div className="mb-6 p-4 rounded-2xl border border-green-500/30 bg-green-500/10 text-green-300 text-center text-sm">
+    🎉 Thank you for your order.
 
-Our team will contact you shortly to confirm your order.
-            <br />
+    <br />
+    <br />
 
-            <span className="text-white/70">
-              Your Order ID: {orderId}
-            </span>
+    Our team will contact you shortly via WhatsApp with payment instructions to confirm dispatch.
 
-          </div>
-        )}
+    <br />
+    <br />
+
+    <span className="text-white/70">
+      Your Order ID: {orderId}
+    </span>
+  </div>
+)}
 
         <div className="space-y-5">
 
@@ -149,17 +153,22 @@ Our team will contact you shortly to confirm your order.
   Limited launch batch currently available.
 </p>
 
-          <div className="pt-4 text-center space-y-2">
+          <div className="pt-4 text-center space-y-3">
 
-            <p className="text-zinc-400 text-sm leading-relaxed">
-              Your order will be confirmed by our team shortly after submission.
-            </p>
+  <p className="text-zinc-400 text-sm leading-relaxed">
+    To ensure smooth delivery and avoid fraudulent orders,
+    delivery charges are collected in advance.
+  </p>
 
-            <p className="text-xs text-zinc-600">
-              Nationwide delivery across Pakistan • Confirmation via phone before dispatch
-            </p>
+  <p className="text-[#c6a972] text-sm leading-relaxed">
+    Remaining amount is payable on delivery.
+  </p>
 
-          </div>
+  <p className="text-xs text-zinc-600">
+    Nationwide delivery across Pakistan • Confirmation via WhatsApp before dispatch
+  </p>
+
+</div>
 
         </div>
 
