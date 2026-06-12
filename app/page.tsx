@@ -193,16 +193,27 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="relative flex justify-center">
-                  <div className="absolute w-[300px] sm:w-[420px] h-[300px] sm:h-[420px] rounded-full border border-[#c6a972]/10" />
-                  <div className="absolute w-[220px] sm:w-[320px] h-[220px] sm:h-[320px] rounded-full border border-[#c6a972]/10" />
+                <div className="flex flex-col items-center">
 
-                  <PerfumeBottle
-                    image="/perfumes/rooh.png"
-                    name="ROOH"
-                    subtitle="The Aqua Elixir"
-                  />
-                </div>
+  <div className="relative flex justify-center">
+    <div className="absolute w-[300px] sm:w-[420px] h-[300px] sm:h-[420px] rounded-full border border-[#c6a972]/10" />
+    <div className="absolute w-[220px] sm:w-[320px] h-[220px] sm:h-[320px] rounded-full border border-[#c6a972]/10" />
+
+    <PerfumeBottle
+      image="/perfumes/rooh.png"
+      name="ROOH"
+      subtitle="The Aqua Elixir"
+    />
+  </div>
+
+  <a
+    href="/rooh"
+    className="mt-10 px-8 py-4 border border-[#c6a972]/30 uppercase tracking-[0.2em] text-xs sm:text-sm hover:bg-[#c6a972] hover:text-black transition duration-300"
+  >
+    View Full Details
+  </a>
+
+</div>
 
                 <div className="space-y-10 text-center lg:text-left">
                   <div>
