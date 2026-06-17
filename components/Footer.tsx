@@ -99,7 +99,23 @@ export default function Footer() {
               </p>
 
               <p>Pakistan</p>
+{/* WHATSAPP BUTTON */}
+<div className="pt-2">
+  <a
+    href={`https://wa.me/923024255245?text=${encodeURIComponent(
+  "Hi, I want to confirm my ROOH order."
+)}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-md hover:opacity-90 transition"
+  >
+    WhatsApp
+  </a>
 
+  <p className="text-zinc-500 text-xs mt-2">
+    For order confirmation & support
+  </p>
+</div>
               {/* SOCIALS */}
               <div className="pt-4">
 
