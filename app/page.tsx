@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <Navbar />
 
-      <main className="relative min-h-screen overflow-hidden bg-black text-white">
+      <main className="relative min-h-screen overflow-x-hidden bg-black text-white">
 
         {/* Effects */}
         <div className="hidden md:block">
@@ -24,70 +24,67 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(198,169,114,0.10),transparent_45%)]" />
         <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[750px] h-[750px] bg-[#c6a972]/10 blur-3xl rounded-full" />
 
-        {/* ================= HERO (EDGE BALANCED FIX) ================= */}
-<section
-  id="home"
-  className="relative z-10 min-h-screen flex items-center px-6 py-24"
->
-  <Reveal>
+        {/* ================= HERO (FIXED DESKTOP SPLIT LAYOUT) ================= */}
+        <section
+          id="home"
+          className="relative w-full min-h-screen flex items-center px-6 pt-20 sm:pt-24"
+        >
+          <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16">
 
-    <div className="w-full flex flex-col lg:flex-row items-center">
+            {/* LEFT SIDE (TEXT) */}
+            <div className="flex-1 text-center lg:text-left">
 
-      {/* LEFT SIDE */}
-      <div className="w-full lg:w-[40%] text-center lg:text-left">
+              <p className="text-zinc-400 tracking-[0.25em] text-xs sm:text-sm uppercase">
+                A Modern Fragrance House
+              </p>
 
-        <p className="uppercase tracking-[0.35em] text-zinc-500 text-sm mb-6">
-          A Modern Fragrance House
-        </p>
+              <h1 className="mt-4 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-[0.15em] text-white">
+                AUKSAF
+              </h1>
 
-        <h1 className="text-6xl md:text-8xl font-semibold tracking-[0.2em]">
-          AUKSAF
-        </h1>
+              <p className="mt-4 text-zinc-400 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+                Crafted through elegance, depth, and identity — fragrances designed to leave presence behind.
+              </p>
 
-        <p className="mt-8 text-zinc-400 text-lg max-w-xl mx-auto lg:mx-0">
-          Crafted through elegance, depth, and identity — fragrances designed to leave presence behind.
-        </p>
+              {/* BUTTONS */}
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a
+                  href="/order"
+                  className="px-6 py-3 bg-[#c6a972] text-black uppercase tracking-widest text-xs sm:text-sm"
+                >
+                  Order ROOH
+                </a>
 
-        <div className="mt-10 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
-          <a
-            href="/order"
-            className="px-8 py-4 bg-white text-black uppercase tracking-widest text-sm hover:bg-zinc-200 transition"
-          >
-            Order ROOH
-          </a>
+                <a
+                  href="#collections"
+                  className="px-6 py-3 border border-white/20 text-white uppercase tracking-widest text-xs sm:text-sm"
+                >
+                  Explore Fragrances
+                </a>
+              </div>
 
-          <a
-            href="#collections"
-            className="px-8 py-4 border border-white/20 uppercase tracking-widest text-sm hover:bg-white hover:text-black transition"
-          >
-            Explore Fragrances
-          </a>
-        </div>
+            </div>
 
-      </div>
+            {/* RIGHT SIDE (IMAGE) */}
+            <div className="flex-1 flex justify-center lg:justify-end">
 
-      {/* RIGHT SIDE (EDGE BLEED FIX) */}
-<div className="w-full lg:w-[60%] flex justify-end relative">
+              <div className="relative w-[280px] sm:w-[360px] md:w-[480px] lg:w-[600px] h-[360px] sm:h-[460px] md:h-[650px]">
 
-  <div className="relative w-[600px] sm:w-[720px] md:w-[860px] lg:w-[920px] h-[650px] md:h-[780px] lg:translate-x-10">
+                <Image
+                  src="/perfumes/rooh.png"
+                  alt="ROOH Perfume"
+                  fill
+                  priority
+                  className="object-contain"
+                  sizes="(max-width: 768px) 80vw, 520px"
+                />
 
-    <Image
-      src="/perfumes/rooh.png"
-      alt="ROOH Perfume"
-      fill
-      priority
-      className="object-contain"
-      sizes="(max-width: 768px) 90vw, 920px"
-    />
+              </div>
 
-  </div>
+            </div>
 
-</div>
-
-    </div>
-
-  </Reveal>
-</section>
+          </div>
+        </section>
 
         {/* ================= ABOUT ================= */}
         <section className="relative z-10 py-28 px-6 border-t border-white/5 bg-zinc-950/40">
