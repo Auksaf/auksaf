@@ -87,28 +87,31 @@ export default function Home() {
         </section>
 
         {/* ================= ABOUT ================= */}
-        <section className="relative z-10 py-28 px-6 border-t border-white/5 bg-zinc-950/40">
-          <Reveal>
-            <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+<section
+  id="about"
+  className="relative z-10 py-28 px-6 border-t border-white/5 bg-zinc-950/40"
+>
+  <Reveal>
+    <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
 
-              <div>
-                <p className="uppercase tracking-[0.35em] text-zinc-500 text-sm mb-6">
-                  The Philosophy
-                </p>
+      <div>
+        <p className="uppercase tracking-[0.35em] text-zinc-500 text-sm mb-6">
+          The Philosophy
+        </p>
 
-                <h2 className="text-4xl md:text-6xl">
-                  Fragrance Is More Than Scent, It Is Presence.
-                </h2>
-              </div>
+        <h2 className="text-4xl md:text-6xl">
+          Fragrance Is More Than Scent, It Is Presence.
+        </h2>
+      </div>
 
-              <div className="text-zinc-400 leading-relaxed">
-                AUKSAF is built around identity, elegance, and emotional depth.
-                Every fragrance is designed to leave a lasting impression.
-              </div>
+      <div className="text-zinc-400 leading-relaxed">
+        AUKSAF is built around identity, elegance, and emotional depth.
+        Every fragrance is designed to leave a lasting impression.
+      </div>
 
-            </div>
-          </Reveal>
-        </section>
+    </div>
+  </Reveal>
+</section>
 
         {/* ================= COLLECTION ================= */}
         <section

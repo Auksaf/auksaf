@@ -54,10 +54,12 @@ export default function Navbar() {
   );
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 overflow-x-hidden">
+    <header className="fixed top-0 left-0 w-full z-[100] overflow-x-visible">
       <div className="mx-auto max-w-7xl px-3 sm:px-6 py-3 sm:py-4">
+        
+        {/* WRAPPER */}
         <div
-          className={`relative flex items-center justify-between rounded-2xl px-3 sm:px-6 py-3 transition-all duration-500 ${
+          className={`relative flex items-center justify-between overflow-visible rounded-2xl px-3 sm:px-6 py-3 transition-all duration-500 ${
             scrolled
               ? "border border-white/10 bg-black/70 backdrop-blur-2xl shadow-[0_0_40px_rgba(0,0,0,0.45)]"
               : "border border-white/5 bg-white/[0.03] backdrop-blur-xl"
@@ -98,7 +100,7 @@ export default function Navbar() {
           <button
             onClick={() => setMobileMenu(!mobileMenu)}
             aria-label="Toggle Menu"
-            className="md:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 flex-shrink-0"
+            className="md:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 flex-shrink-0 relative z-[10000]"
           >
             <span
               className={`w-6 h-[1px] bg-white transition-all duration-300 ${
@@ -125,7 +127,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="absolute top-[110%] left-0 w-full rounded-2xl border border-[#c6a972]/20 bg-[#0b0b0b]/95 backdrop-blur-2xl p-6 flex flex-col gap-6 md:hidden shadow-[0_10px_60px_rgba(0,0,0,0.55)]"
+                className="absolute top-full left-0 w-full mt-2 rounded-2xl border border-[#c6a972]/20 bg-[#0b0b0b]/95 backdrop-blur-2xl p-6 flex flex-col gap-6 md:hidden shadow-[0_10px_60px_rgba(0,0,0,0.55)] z-[9999] pointer-events-auto"
               >
                 {["home", "collections", "about", "contact"].map((id) => (
                   <a
@@ -140,6 +142,7 @@ export default function Navbar() {
               </motion.div>
             )}
           </AnimatePresence>
+
         </div>
       </div>
     </header>
