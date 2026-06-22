@@ -16,26 +16,32 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     const { name, phone, city, address, product, price, quantity } = body;
+    const { count } = await supabase
+  .from("orders")
+  .select("*", { count: "exact", head: true });
+
+const orderNo = (count ?? 0) + 1;
 
     console.log("Order received:", body);
 
     // 1. SAVE ORDER IN SUPABASE
     const { data, error } = await supabase
-      .from("orders")
-      .insert([
-        {
-          name,
-          phone,
-          city,
-          address,
-          product,
-          price,
-          quantity,
-          status: "Pending",
-        },
-      ])
-      .select()
-      .single();
+  .from("orders")
+  .insert([
+    {
+      order_no: orderNo,
+      name,
+      phone,
+      city,
+      address,
+      product,
+      price,
+      quantity,
+      status: "Pending",
+    },
+  ])
+  .select()
+  .single();
 
     if (error) {
       console.error("Supabase error:", error);
@@ -60,15 +66,15 @@ export async function POST(req: Request) {
         <p><b>Price:</b> Rs ${price}</p>
         <p><b>Quantity:</b> ${quantity}</p>
         <hr/>
-        <p><b>Order ID:</b> ${data.id}</p>
+        <p><b>Order No:</b> ${data.order_no}</p>
       `,
     });
 
     // 3. RETURN RESPONSE TO FRONTEND
     return NextResponse.json({
-      success: true,
-      orderId: data.id,
-    });
+  success: true,
+  orderId: data.order_no,
+});
 
   } catch (err) {
     console.error(err);

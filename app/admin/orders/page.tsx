@@ -79,10 +79,11 @@ export default function OrdersPage() {
       </div>
 
       <div className="overflow-x-auto border border-white/10 rounded-2xl bg-white/5 backdrop-blur-md">
-        <table className="w-full min-w-[1000px] text-left">
+        <table className="w-full min-w-[1100px] text-left">
 
           <thead className="border-b border-white/10 bg-white/5">
             <tr>
+              <th className="p-4">Order No</th>
               <th className="p-4">Customer</th>
               <th className="p-4">Phone</th>
               <th className="p-4">City</th>
@@ -100,6 +101,11 @@ export default function OrdersPage() {
                 key={o.id}
                 className="border-b border-white/5 hover:bg-white/5"
               >
+                {/* NEW: Order Number */}
+                <td className="p-4 font-semibold text-[#c6a972]">
+                  #{o.order_no ?? "-"}
+                </td>
+
                 <td className="p-4">
                   <div className="font-medium">{o.name}</div>
                   <div className="text-xs text-zinc-500">
