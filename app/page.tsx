@@ -104,10 +104,20 @@ export default function Home() {
         </h2>
       </div>
 
-      <div className="text-zinc-400 leading-relaxed">
-        AUKSAF is built around identity, elegance, and emotional depth.
-        Every fragrance is designed to leave a lasting impression.
-      </div>
+      <div>
+  <p className="text-zinc-400 leading-relaxed text-lg">
+    AUKSAF is built around identity, elegance, and emotional depth.
+    Every fragrance is designed to leave a lasting impression.
+  </p>
+
+  <div className="mt-10 pt-6 border-t border-[#c6a972]/10">
+    <p className="text-[#c6a972] text-lg md:text-xl italic tracking-[0.08em] leading-relaxed">
+      Adorned with Untold Kindness,
+      <br />
+      Spoken in Aromatic Feelings
+    </p>
+  </div>
+</div>
 
     </div>
   </Reveal>
