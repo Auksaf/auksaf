@@ -101,10 +101,10 @@ export default function OrdersPage() {
                 key={o.id}
                 className="border-b border-white/5 hover:bg-white/5"
               >
-                {/* NEW: Order Number */}
-                <td className="p-4 font-semibold text-[#c6a972]">
-                  #{o.order_no ?? "-"}
-                </td>
+                {/* Order Number */}
+<td className="p-4 font-semibold text-[#c6a972]">
+  {o.order_no ?? "-"}
+</td>
 
                 <td className="p-4">
                   <div className="font-medium">{o.name}</div>

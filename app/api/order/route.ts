@@ -22,6 +22,8 @@ export async function POST(req: Request) {
 
 const orderNo = (count ?? 0) + 1;
 
+const orderId = `AK-ROOH-${String(orderNo).padStart(6, "0")}`;
+
     console.log("Order received:", body);
 
     // 1. SAVE ORDER IN SUPABASE
@@ -66,14 +68,15 @@ const orderNo = (count ?? 0) + 1;
         <p><b>Price:</b> Rs ${price}</p>
         <p><b>Quantity:</b> ${quantity}</p>
         <hr/>
-        <p><b>Order No:</b> ${data.order_no}</p>
+        <p><b>Order ID:</b> ${orderId}</p>
       `,
     });
 
     // 3. RETURN RESPONSE TO FRONTEND
-    return NextResponse.json({
+   return NextResponse.json({
   success: true,
-  orderId: data.order_no,
+  orderId,
+  orderNo,
 });
 
   } catch (err) {
