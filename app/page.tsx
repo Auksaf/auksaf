@@ -78,7 +78,7 @@ export default function Home() {
 </h1>
 
               <p className="mt-8 font-[var(--font-inter)] text-[#b7b1a6] text-base leading-8 max-w-xl mx-auto lg:mx-0">
-                Crafted through elegance, depth, and identity — fragrances designed to leave presence behind.
+                Crafted by msj through elegance, depth, and identity — fragrances designed to leave presence behind.
               </p>
 
               {/* BUTTONS */}
