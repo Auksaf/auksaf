@@ -4,6 +4,7 @@ import MouseGlow from "../components/MouseGlow";
 import Footer from "../components/Footer";
 import SmoothScroll from "../components/SmoothScroll";
 import ProductGrid from "../components/ProductGrid";
+import Reviews from "../components/Reviews";
 import BrandManifesto from "../components/BrandManifesto";
 import Image from "next/image";
 
@@ -359,6 +360,58 @@ export default function Home() {
 </section>
 
         <ProductGrid />
+        <ProductGrid />
+
+{/* ================= CUSTOMER REVIEWS ================= */}
+
+<section
+  className="relative z-10 py-28 px-6 border-t border-[#c6a972]/8 bg-transparent"
+>
+  <div className="max-w-6xl mx-auto text-center">
+
+    <p className="uppercase tracking-[0.35em] text-zinc-500 text-sm mb-6">
+      Verified Customers
+    </p>
+
+    <h2 className="text-5xl md:text-6xl tracking-[0.2em]">
+      What Our Customers Say
+    </h2>
+
+    <p className="mt-6 text-zinc-400 max-w-2xl mx-auto">
+      Every review below has been submitted by a verified AUKSAF customer.
+    </p>
+
+  </div>
+
+  <div className="max-w-4xl mx-auto mt-16">
+    <Reviews limit={3} />
+  </div>
+
+  <div className="mt-12 text-center">
+
+    <a
+      href="/reviews"
+      className="
+        inline-block
+        px-8
+        py-4
+        border
+        border-[#c6a972]/30
+        uppercase
+        tracking-[0.22em]
+        text-sm
+        hover:bg-[#c6a972]
+        hover:text-black
+        transition
+      "
+    >
+      View All Reviews
+    </a>
+
+  </div>
+
+</section>
+
         <BrandManifesto />
         <Footer />
 

@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+const isHomePage = pathname === "/";
 
   useEffect(() => {
     const sections = ["home", "collections", "about", "contact"];
@@ -41,17 +44,17 @@ export default function Navbar() {
   }, []);
 
   const navItem = (id: string, label: string) => (
-    <a
-      href={`#${id}`}
-      className={`uppercase tracking-[0.15em] text-xs transition duration-300 whitespace-nowrap ${
-        activeSection === id
-          ? "text-[#c6a972]"
-          : "text-zinc-300 hover:text-white"
-      }`}
-    >
-      {label}
-    </a>
-  );
+  <a
+    href={isHomePage ? `#${id}` : `/#${id}`}
+    className={`uppercase tracking-[0.15em] text-xs transition duration-300 whitespace-nowrap ${
+      activeSection === id
+        ? "text-[#c6a972]"
+        : "text-zinc-300 hover:text-white"
+    }`}
+  >
+    {label}
+  </a>
+);
 
   return (
     <header className="fixed top-0 left-0 w-full z-[100] overflow-x-visible">
@@ -132,7 +135,7 @@ export default function Navbar() {
                 {["home", "collections", "about", "contact"].map((id) => (
                   <a
                     key={id}
-                    href={`#${id}`}
+                    href={isHomePage ? `#${id}` : `/#${id}`}
                     onClick={() => setMobileMenu(false)}
                     className="uppercase tracking-[0.2em] text-sm text-zinc-400 hover:text-[#c6a972]"
                   >
