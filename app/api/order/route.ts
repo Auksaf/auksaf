@@ -31,7 +31,7 @@ const orderId = `AK-ROOH-${String(orderNo).padStart(6, "0")}`;
   .from("orders")
   .insert([
     {
-      order_no: orderNo,
+      order_no: orderId,
       name,
       phone,
       city,

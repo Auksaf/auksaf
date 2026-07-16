@@ -1,3 +1,4 @@
+import Reviews from "@/components/Reviews";
 export default function RoohPage() {
   return (
     <main className="min-h-screen bg-black text-white">
@@ -186,9 +187,7 @@ export default function RoohPage() {
 
         <h2 className="text-3xl mb-8">Verified Customer Reviews</h2>
 
-        <div className="border border-white/10 rounded-3xl p-8 bg-white/[0.02] text-zinc-300">
-          Customer reviews will be published after verified purchases.
-        </div>
+        <Reviews />
 
       </section>
 
