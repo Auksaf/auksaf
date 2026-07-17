@@ -358,8 +358,7 @@ export default function Home() {
 
   </div>
 </section>
-
-        <ProductGrid />
+ 
         <ProductGrid />
 
 {/* ================= CUSTOMER REVIEWS ================= */}
