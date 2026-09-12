@@ -15,94 +15,6 @@ export default function OrderPage() {
   const product = "ROOH - The Aqua Elixir (50ML)";
   const price = 2499;
 
-  const adminWhatsApp = "923004497684";
-
-  // ----------------------------
-  // PHONE NORMALIZATION (PAKISTAN)
-  // ----------------------------
-  const formatPhone = (input: string) => {
-    let num = input.replace(/\D/g, "");
-
-    // 03XXXXXXXXX → 923XXXXXXXXX
-    if (num.startsWith("0")) {
-      num = "92" + num.substring(1);
-    }
-
-    // 3XXXXXXXXX → 923XXXXXXXXX
-    if (num.length === 10 && num.startsWith("3")) {
-      num = "92" + num;
-    }
-
-    return num;
-  };
-
-  const handleWhatsApp = (orderIdValue: string, formattedPhone: string) => {
-  const adminMessage = `
-🚨 NEW AUKSAF ORDER
-
-Order ID: ${orderIdValue}
-Product: ${product}
-Price: Rs. ${price}
-
-Customer:
-${name}
-${phone}
-${city}
-${address}
-`;
-
-  const customerMessage = `
-✨ AUKSAF — Launch Edition 2026
-
-Dear ${name},
-
-Thank you for choosing AUKSAF.
-
-━━━━━━━━━━━━━━
-
-Your Order ID
-
-${orderIdValue}
-
-━━━━━━━━━━━━━━
-
-Product:
-ROOH — The Aqua Elixir (50ML)
-
-Amount:
-Rs. ${price}
-
-━━━━━━━━━━━━━━
-
-✅ FINAL STEP
-
-To confirm your booking simply reply:
-
-YES
-
-or
-
-YES, CONFIRM ORDER
-
-Once we receive your confirmation, our team will contact you regarding dispatch.
-
-Thank you for being among the first owners of ROOH.
-
-Team AUKSAF
-`;
-
-  const adminURL = `https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(adminMessage)}`;
-  const customerURL = `https://wa.me/${formattedPhone}?text=${encodeURIComponent(customerMessage)}`;
-
-  // STEP 1: Open admin WhatsApp
-  window.open(adminURL, "_blank");
-
-  // STEP 2: After delay, open customer WhatsApp (same tab fallback safe)
-  setTimeout(() => {
-    window.location.href = customerURL;
-  }, 1200);
-};
-
   const handleOrder = async () => {
     if (!name || !phone || !address || !city) {
       alert("Please fill all required fields");
@@ -113,8 +25,6 @@ Team AUKSAF
       setLoading(true);
       setSuccess(false);
 
-      const formattedPhone = formatPhone(phone);
-
       const res = await fetch("/api/order", {
         method: "POST",
         headers: {
@@ -122,7 +32,7 @@ Team AUKSAF
         },
         body: JSON.stringify({
           name,
-          phone: formattedPhone,
+          phone,
           city,
           address,
           product,
@@ -136,8 +46,6 @@ Team AUKSAF
       if (data.success) {
         setSuccess(true);
         setOrderId(data.orderId);
-
-        handleWhatsApp(data.orderId, formattedPhone);
 
         setName("");
         setPhone("");
@@ -155,7 +63,7 @@ Team AUKSAF
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-6 py-16">
+    <div className="min-h-screen bg-transparent text-white flex items-center justify-center px-6 py-16">
       <div className="w-full max-w-xl border border-white/10 rounded-[2rem] p-8 md:p-10 bg-white/[0.03] backdrop-blur-xl relative">
 
         <div className="absolute top-6 right-6">
@@ -176,42 +84,30 @@ Team AUKSAF
         </p>
 
         {success && (
-  <div className="mb-6 p-4 rounded-2xl border border-green-500/30 bg-green-500/10 text-green-300 text-center text-sm">
+          <div className="mb-6 p-4 rounded-2xl border border-green-500/30 bg-green-500/10 text-green-300 text-center text-sm">
 
-    <div className="text-lg font-semibold">
-      🎉 Thank you for choosing AUKSAF.
-    </div>
+            <div className="text-lg font-semibold">
+              🎉 Thank you for choosing AUKSAF.
+            </div>
 
-    <div className="mt-4 text-white/80">
-      Your Order ID
-    </div>
+            <div className="mt-4 text-white/80">
+              Your order has been received successfully.
+            </div>
 
-    <div className="mt-2 text-2xl font-bold text-[#c6a972] tracking-wider">
-      {orderId}
-    </div>
+            <div className="mt-4 text-white/80">
+              Your Order ID
+            </div>
 
-    <div className="mt-5 text-white/80 leading-relaxed">
-      Please open WhatsApp and reply with:
-    </div>
+            <div className="mt-2 text-2xl font-bold text-[#c6a972] tracking-wider">
+              {orderId}
+            </div>
 
-    <div className="mt-3 text-xl font-bold text-green-300">
-      YES
-    </div>
+            <div className="mt-5 text-white/70 leading-relaxed">
+              Our team will contact you regarding dispatch.
+            </div>
 
-    <div className="mt-2 text-white/70">
-      or
-    </div>
-
-    <div className="mt-2 text-lg font-semibold text-green-300">
-      YES, CONFIRM ORDER
-    </div>
-
-    <div className="mt-5 text-white/70">
-      Once you confirm, our team will proceed with your order.
-    </div>
-
-  </div>
-)}
+          </div>
+        )}
 
         <div className="space-y-5">
 

@@ -1,6 +1,6 @@
 export default function BrandManifesto() {
   return (
-    <section className="relative z-10 py-32 md:py-40 px-6 border-t border-white/5 bg-gradient-to-b from-black to-zinc-950/60">
+    <section className="relative z-10 py-32 md:py-40 px-6 border-t border-white/5 bg-transparent">
 
       {/* Ambient Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(198,169,114,0.06),transparent_50%)]" />

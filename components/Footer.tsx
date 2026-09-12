@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="relative z-10 border-t border-white/10 mt-24 md:mt-40 bg-black/60 backdrop-blur-sm"
+      className="relative z-10 border-t border-white/10 mt-24 md:mt-40 bg-transparent"
     >
       <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
 

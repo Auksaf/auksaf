@@ -68,7 +68,6 @@ export default function RootLayout({
         className={`
           ${cormorant.variable}
           ${inter.variable}
-          bg-black
           text-white
           antialiased
           overflow-x-hidden

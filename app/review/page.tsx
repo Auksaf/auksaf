@@ -46,7 +46,7 @@ export default function ReviewPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-transparent text-white">
 
       <div className="max-w-4xl mx-auto px-6 pt-8">
         <a

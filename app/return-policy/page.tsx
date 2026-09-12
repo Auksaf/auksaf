@@ -2,7 +2,7 @@ import SiteHeader from "@/components/SiteHeader";
 
 export default function ReturnPolicyPage() {
   return (
-    <div className="min-h-screen bg-black text-white px-6 py-24">
+    <div className="min-h-screen bg-transparent text-white px-6 py-24">
 
 <SiteHeader />
 
