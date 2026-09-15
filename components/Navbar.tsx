@@ -10,7 +10,10 @@ export default function Navbar() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-const isHomePage = pathname === "/";
+
+  const isHomePage = pathname === "/";
+  const isJournalPage =
+    pathname.startsWith("/articles") || pathname.startsWith("/categories");
 
   useEffect(() => {
     const sections = ["home", "collections", "about", "contact"];
@@ -44,22 +47,21 @@ const isHomePage = pathname === "/";
   }, []);
 
   const navItem = (id: string, label: string) => (
-  <a
-    href={isHomePage ? `#${id}` : `/#${id}`}
-    className={`uppercase tracking-[0.15em] text-xs transition duration-300 whitespace-nowrap ${
-      activeSection === id
-        ? "text-[#c6a972]"
-        : "text-zinc-300 hover:text-white"
-    }`}
-  >
-    {label}
-  </a>
-);
+    <a
+      href={isHomePage ? `#${id}` : `/#${id}`}
+      className={`uppercase tracking-[0.15em] text-xs transition duration-300 whitespace-nowrap ${
+        activeSection === id
+          ? "text-[#c6a972]"
+          : "text-zinc-300 hover:text-white"
+      }`}
+    >
+      {label}
+    </a>
+  );
 
   return (
     <header className="fixed top-0 left-0 w-full z-[100] overflow-x-visible">
       <div className="mx-auto max-w-7xl px-3 sm:px-6 py-3 sm:py-4">
-        
         {/* WRAPPER */}
         <div
           className={`relative flex items-center justify-between overflow-visible rounded-2xl px-3 sm:px-6 py-3 transition-all duration-500 ${
@@ -96,6 +98,16 @@ const isHomePage = pathname === "/";
             {navItem("home", "Home")}
             {navItem("collections", "Collections")}
             {navItem("about", "About")}
+            <a
+              href="/articles/en"
+              className={`uppercase tracking-[0.15em] text-xs transition duration-300 whitespace-nowrap ${
+                isJournalPage
+                  ? "text-[#c6a972]"
+                  : "text-zinc-300 hover:text-white"
+              }`}
+            >
+              Journal
+            </a>
             {navItem("contact", "Contact")}
           </nav>
 
@@ -142,10 +154,21 @@ const isHomePage = pathname === "/";
                     {id}
                   </a>
                 ))}
+
+                <a
+                  href="/articles/en"
+                  onClick={() => setMobileMenu(false)}
+                  className={`uppercase tracking-[0.2em] text-sm ${
+                    isJournalPage
+                      ? "text-[#c6a972]"
+                      : "text-zinc-400 hover:text-[#c6a972]"
+                  }`}
+                >
+                  Journal
+                </a>
               </motion.div>
             )}
           </AnimatePresence>
-
         </div>
       </div>
     </header>
