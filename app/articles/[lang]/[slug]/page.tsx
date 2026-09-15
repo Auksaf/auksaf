@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 import { articles } from "@/content/articles";
 
 const baseUrl = "https://auksaf.com";
@@ -170,11 +169,19 @@ export default async function ArticlePage({
             {content.category}
           </p>
 
-          <h1 className="mt-5 font-[var(--font-cormorant)] text-5xl leading-tight md:text-6xl">
+          <h1
+            className={`mt-5 text-5xl leading-tight md:text-6xl ${
+              isUrdu ? "font-gulzar" : ""
+            }`}
+          >
             {content.title}
           </h1>
 
-          <p className="mt-6 text-xl leading-8 text-[#C9C1B6]">
+          <p
+            className={`mt-6 text-xl leading-8 text-[#C9C1B6] ${
+              isUrdu ? "font-gulzar" : ""
+            }`}
+          >
             {content.excerpt}
           </p>
 
@@ -196,12 +203,21 @@ export default async function ArticlePage({
         <div className="mt-14 space-y-10 text-lg leading-8 text-[#C9C1B6]">
           {content.sections.map((section) => (
             <section key={section.heading}>
-              <h2 className="font-[var(--font-cormorant)] text-3xl text-[#E9E4DC]">
+              <h2
+                className={`text-3xl text-[#E9E4DC] ${
+                  isUrdu ? "font-gulzar" : ""
+                }`}
+              >
                 {section.heading}
               </h2>
 
               {section.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="mt-4">
+                <p
+                  key={paragraph}
+                  className={`mt-4 ${
+                    isUrdu ? "font-gulzar" : ""
+                  }`}
+                >
                   {paragraph}
                 </p>
               ))}
@@ -211,7 +227,7 @@ export default async function ArticlePage({
 
         {article.sources && article.sources.length > 0 && (
           <section className="mt-16 border-t border-white/10 pt-10">
-            <h2 className="font-[var(--font-cormorant)] text-2xl">
+            <h2 className="text-2xl">
               {isUrdu
                 ? "ذرائع اور مزید مطالعہ"
                 : "Sources & Further Reading"}
@@ -243,7 +259,7 @@ export default async function ArticlePage({
         {article.relatedArticles &&
           article.relatedArticles.length > 0 && (
             <section className="mt-16 border-t border-white/10 pt-10">
-              <h2 className="font-[var(--font-cormorant)] text-2xl">
+              <h2 className="text-2xl">
                 {isUrdu ? "متعلقہ مضامین" : "Related Articles"}
               </h2>
 
@@ -263,12 +279,18 @@ export default async function ArticlePage({
                     <div key={relatedArticle.slug}>
                       <Link
                         href={`/articles/${language}/${relatedArticle.slug}`}
-                        className="font-[var(--font-cormorant)] text-xl text-[#B08D57] hover:opacity-60"
+                        className={`text-xl text-[#B08D57] hover:opacity-60 ${
+                          isUrdu ? "font-gulzar" : ""
+                        }`}
                       >
                         {relatedContent.title}
                       </Link>
 
-                      <p className="mt-1 text-sm leading-6 text-[#9F978D]">
+                      <p
+                        className={`mt-1 text-sm leading-6 text-[#9F978D] ${
+                          isUrdu ? "font-gulzar" : ""
+                        }`}
+                      >
                         {relatedContent.excerpt}
                       </p>
                     </div>
