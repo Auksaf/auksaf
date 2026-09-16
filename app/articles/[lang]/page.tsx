@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import MouseGlow from "@/components/MouseGlow";
 import Navbar from "@/components/Navbar";
 import { articles } from "@/content/articles";
 
@@ -75,7 +76,11 @@ export default async function ArticlesPage({
     >
       <Navbar />
 
-      <section className="mx-auto max-w-5xl px-6 pb-20 pt-36 sm:pt-40">
+      <div className="hidden md:block">
+        <MouseGlow />
+      </div>
+
+      <section className="relative z-10 mx-auto max-w-5xl px-6 pb-20 pt-36 sm:pt-40">
         <header className="max-w-3xl">
           <div className="flex items-center justify-between gap-4">
             <p className="text-sm font-medium tracking-[0.25em] uppercase text-[#B08D57]">

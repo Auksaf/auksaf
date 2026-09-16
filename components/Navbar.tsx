@@ -12,7 +12,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const isHomePage = pathname === "/";
-  const isJournalPage =
+  const isBlogPage =
     pathname.startsWith("/articles") || pathname.startsWith("/categories");
 
   useEffect(() => {
@@ -60,18 +60,25 @@ export default function Navbar() {
   );
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[100] overflow-x-visible">
-      <div className="mx-auto max-w-7xl px-3 sm:px-6 py-3 sm:py-4">
+    <header
+      dir="ltr"
+      style={{
+        direction: "ltr",
+        unicodeBidi: "isolate",
+      }}
+      className="fixed top-0 left-0 z-[100] w-full overflow-x-visible text-left"
+    >
+      <div className="mx-auto max-w-7xl px-3 py-3 sm:px-6 sm:py-4">
         {/* WRAPPER */}
         <div
-          className={`relative flex items-center justify-between overflow-visible rounded-2xl px-3 sm:px-6 py-3 transition-all duration-500 ${
+          className={`relative flex items-center justify-between overflow-visible rounded-2xl px-3 py-3 transition-all duration-500 sm:px-6 ${
             scrolled
               ? "border border-white/10 bg-black/70 backdrop-blur-2xl shadow-[0_0_40px_rgba(0,0,0,0.45)]"
               : "border border-white/5 bg-white/[0.03] backdrop-blur-xl"
           }`}
         >
           {/* LEFT */}
-          <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
+          <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-4">
             <Image
               src="/logo.png"
               alt="AUKSAF Logo"
@@ -79,35 +86,37 @@ export default function Navbar() {
               height={50}
               loading="eager"
               priority
-              className="object-contain w-[38px] h-[38px] sm:w-[50px] sm:h-[50px] flex-shrink-0"
+              className="h-[38px] w-[38px] flex-shrink-0 object-contain sm:h-[50px] sm:w-[50px]"
             />
 
             <div className="min-w-0 overflow-hidden">
-              <h1 className="text-sm sm:text-xl tracking-[0.18em] sm:tracking-[0.35em] font-semibold text-white truncate">
+              <h1 className="truncate text-sm font-semibold tracking-[0.18em] text-white sm:text-xl sm:tracking-[0.35em]">
                 AUKSAF
               </h1>
 
-              <p className="text-[8px] sm:text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-1 truncate">
+              <p className="mt-1 truncate text-[8px] uppercase tracking-[0.2em] text-zinc-400 sm:text-[10px]">
                 The Art of Essence
               </p>
             </div>
           </div>
 
           {/* DESKTOP NAV */}
-          <nav className="hidden md:flex items-center gap-8 lg:gap-10 flex-shrink-0">
+          <nav className="hidden flex-shrink-0 items-center gap-8 md:flex lg:gap-10">
             {navItem("home", "Home")}
             {navItem("collections", "Collections")}
             {navItem("about", "About")}
+
             <a
               href="/articles/en"
-              className={`uppercase tracking-[0.15em] text-xs transition duration-300 whitespace-nowrap ${
-                isJournalPage
+              className={`whitespace-nowrap text-xs uppercase tracking-[0.15em] transition duration-300 ${
+                isBlogPage
                   ? "text-[#c6a972]"
                   : "text-zinc-300 hover:text-white"
               }`}
             >
-              Journal
+              Blog
             </a>
+
             {navItem("contact", "Contact")}
           </nav>
 
@@ -115,21 +124,23 @@ export default function Navbar() {
           <button
             onClick={() => setMobileMenu(!mobileMenu)}
             aria-label="Toggle Menu"
-            className="md:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 flex-shrink-0 relative z-[10000]"
+            className="relative z-[10000] flex h-10 w-10 flex-shrink-0 flex-col items-center justify-center gap-1.5 md:hidden"
           >
             <span
-              className={`w-6 h-[1px] bg-white transition-all duration-300 ${
-                mobileMenu ? "rotate-45 translate-y-[7px]" : ""
+              className={`h-[1px] w-6 bg-white transition-all duration-300 ${
+                mobileMenu ? "translate-y-[7px] rotate-45" : ""
               }`}
             />
+
             <span
-              className={`w-6 h-[1px] bg-white transition-all duration-300 ${
+              className={`h-[1px] w-6 bg-white transition-all duration-300 ${
                 mobileMenu ? "opacity-0" : ""
               }`}
             />
+
             <span
-              className={`w-6 h-[1px] bg-white transition-all duration-300 ${
-                mobileMenu ? "-rotate-45 -translate-y-[7px]" : ""
+              className={`h-[1px] w-6 bg-white transition-all duration-300 ${
+                mobileMenu ? "-translate-y-[7px] -rotate-45" : ""
               }`}
             />
           </button>
@@ -142,14 +153,14 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="absolute top-full left-0 w-full mt-2 rounded-2xl border border-[#c6a972]/20 bg-[#0b0b0b]/95 backdrop-blur-2xl p-6 flex flex-col gap-6 md:hidden shadow-[0_10px_60px_rgba(0,0,0,0.55)] z-[9999] pointer-events-auto"
+                className="absolute left-0 top-full z-[9999] mt-2 flex w-full flex-col gap-6 rounded-2xl border border-[#c6a972]/20 bg-[#0b0b0b]/95 p-6 text-left shadow-[0_10px_60px_rgba(0,0,0,0.55)] backdrop-blur-2xl md:hidden"
               >
                 {["home", "collections", "about", "contact"].map((id) => (
                   <a
                     key={id}
                     href={isHomePage ? `#${id}` : `/#${id}`}
                     onClick={() => setMobileMenu(false)}
-                    className="uppercase tracking-[0.2em] text-sm text-zinc-400 hover:text-[#c6a972]"
+                    className="text-left text-sm uppercase tracking-[0.2em] text-zinc-400 hover:text-[#c6a972]"
                   >
                     {id}
                   </a>
@@ -158,13 +169,13 @@ export default function Navbar() {
                 <a
                   href="/articles/en"
                   onClick={() => setMobileMenu(false)}
-                  className={`uppercase tracking-[0.2em] text-sm ${
-                    isJournalPage
+                  className={`text-left text-sm uppercase tracking-[0.2em] ${
+                    isBlogPage
                       ? "text-[#c6a972]"
                       : "text-zinc-400 hover:text-[#c6a972]"
                   }`}
                 >
-                  Journal
+                  Blog
                 </a>
               </motion.div>
             )}

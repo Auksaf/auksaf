@@ -1,20 +1,23 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer
       id="contact"
-      className="relative z-10 border-t border-white/10 mt-24 md:mt-40 bg-transparent"
+      dir="ltr"
+      style={{
+        direction: "ltr",
+        unicodeBidi: "isolate",
+      }}
+      className="relative z-10 mt-20 border-t border-white/10 bg-transparent text-left md:mt-24"
     >
-      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-14 md:gap-16">
-
+      <div className="mx-auto max-w-7xl px-6 py-14 md:py-16">
+        {/* MAIN FOOTER */}
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           {/* BRAND */}
           <div>
-
-            <div className="flex items-center gap-4 mb-6">
-
+            <div className="mb-5 flex items-center gap-4">
               <Image
                 src="/logo.png"
                 alt="AUKSAF Logo"
@@ -24,191 +27,169 @@ export default function Footer() {
               />
 
               <div>
-
-                <h2 className="text-xl md:text-2xl tracking-[0.35em] font-semibold">
+                <h2 className="text-xl font-semibold tracking-[0.35em] md:text-2xl">
                   AUKSAF
                 </h2>
 
-                <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-zinc-500 mt-1">
+                <p className="mt-1 text-[10px] uppercase tracking-[0.3em] text-zinc-500 md:text-xs">
                   The Art of Essence
                 </p>
-
               </div>
-
             </div>
 
-            <p className="text-zinc-500 leading-relaxed max-w-sm text-sm md:text-base">
+            <p className="max-w-sm text-sm leading-7 text-zinc-500">
               Crafted through atmosphere, elegance, and emotional identity.
               Modern fragrances designed to leave a lasting presence.
             </p>
-
           </div>
 
-          {/* NAVIGATION */}
+          {/* EXPLORE */}
           <div>
-
-            <p className="uppercase tracking-[0.3em] text-zinc-500 text-[10px] md:text-xs mb-6 md:mb-8">
-              Navigation
+            <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-zinc-500 md:text-xs">
+              Explore
             </p>
 
-            <div className="flex flex-col gap-4 md:gap-5 text-sm md:text-base">
-
+            <nav className="flex flex-col gap-3.5 text-sm md:text-base">
               <a
                 href="#home"
-                className="text-zinc-300 hover:text-white transition duration-300 w-fit"
+                className="w-fit text-zinc-300 transition duration-300 hover:text-white"
               >
                 Home
               </a>
 
               <a
                 href="#collections"
-                className="text-zinc-300 hover:text-white transition duration-300 w-fit"
+                className="w-fit text-zinc-300 transition duration-300 hover:text-white"
               >
                 Collections
               </a>
 
               <a
                 href="#about"
-                className="text-zinc-300 hover:text-white transition duration-300 w-fit"
+                className="w-fit text-zinc-300 transition duration-300 hover:text-white"
               >
                 About
               </a>
 
+              <Link
+                href="/articles/en"
+                className="w-fit text-zinc-300 transition duration-300 hover:text-white"
+              >
+                Blog
+              </Link>
+
               <a
                 href="#contact"
-                className="text-zinc-300 hover:text-white transition duration-300 w-fit"
+                className="w-fit text-zinc-300 transition duration-300 hover:text-white"
               >
                 Contact
               </a>
-
-            </div>
-
+            </nav>
           </div>
 
-          {/* CONTACT + SOCIALS */}
+          {/* CONNECT */}
           <div>
-
-            <p className="uppercase tracking-[0.3em] text-zinc-500 text-[10px] md:text-xs mb-6 md:mb-8">
-              Contact
+            <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-zinc-500 md:text-xs">
+              Connect
             </p>
 
-            <div className="space-y-5 text-zinc-300 text-sm md:text-base">
-
-              <p className="break-all">
+            <div className="flex flex-col gap-3.5 text-sm md:text-base">
+              <a
+                href="mailto:auksafofficial@gmail.com"
+                className="w-fit break-all text-zinc-300 transition duration-300 hover:text-white"
+              >
                 auksafofficial@gmail.com
+              </a>
+
+              <p className="text-zinc-300">Pakistan</p>
+
+              <a
+                href={`https://wa.me/923024255245?text=${encodeURIComponent(
+                  "Hi, I want to confirm my ROOH order."
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-fit items-center rounded-md bg-[#25D366] px-4 py-2 text-sm text-white transition hover:opacity-90"
+              >
+                WhatsApp
+              </a>
+
+              <p className="-mt-1 text-xs text-zinc-500">
+                For order confirmation & support
               </p>
 
-              <p>Pakistan</p>
-{/* WHATSAPP BUTTON */}
-<div className="pt-2">
-  <a
-    href={`https://wa.me/923024255245?text=${encodeURIComponent(
-  "Hi, I want to confirm my ROOH order."
-)}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="inline-flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-md hover:opacity-90 transition"
-  >
-    WhatsApp
-  </a>
+              <div className="mt-2 flex flex-col gap-3.5">
+                <a
+                  href="https://instagram.com/auksaf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-fit text-zinc-300 transition duration-300 hover:text-white"
+                >
+                  Instagram
+                </a>
 
-  <p className="text-zinc-500 text-xs mt-2">
-    For order confirmation & support
-  </p>
-</div>
-              {/* SOCIALS */}
-              <div className="pt-4">
+                <a
+                  href="https://tiktok.com/@auksaf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-fit text-zinc-300 transition duration-300 hover:text-white"
+                >
+                  TikTok
+                </a>
 
-                <p className="uppercase tracking-[0.3em] text-zinc-500 text-[10px] md:text-xs mb-5">
-                  Follow Us
-                </p>
-
-                <div className="flex flex-col gap-4 text-sm md:text-base">
-
-                  <a
-                    href="https://instagram.com/auksaf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-zinc-300 hover:text-white transition duration-300 w-fit"
-                  >
-                    Instagram
-                  </a>
-
-                  <a
-                    href="https://tiktok.com/@auksaf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-zinc-300 hover:text-white transition duration-300 w-fit"
-                  >
-                    TikTok
-                  </a>
-
-                  <a
-                    href="https://facebook.com/auksaf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-zinc-300 hover:text-white transition duration-300 w-fit"
-                  >
-                    Facebook
-                  </a>
-
-                </div>
-
+                <a
+                  href="https://facebook.com/auksaf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-fit text-zinc-300 transition duration-300 hover:text-white"
+                >
+                  Facebook
+                </a>
               </div>
-
-              {/* POLICIES */}
-              <div className="pt-8 border-t border-white/5">
-
-                <p className="uppercase tracking-[0.3em] text-zinc-500 text-[10px] md:text-xs mb-5">
-                  Policies
-                </p>
-
-                <div className="flex flex-col gap-4 text-sm md:text-base">
-
-                  <a
-                    href="/terms"
-                    className="text-zinc-300 hover:text-white transition duration-300 w-fit"
-                  >
-                    Terms & Conditions
-                  </a>
-
-                  <a
-                    href="/return-policy"
-                    className="text-zinc-300 hover:text-white transition duration-300 w-fit"
-                  >
-                    Return Policy
-                  </a>
-
-                  <a
-                    href="/privacy-policy"
-                    className="text-zinc-300 hover:text-white transition duration-300 w-fit"
-                  >
-                    Privacy Policy
-                  </a>
-
-                </div>
-
-              </div>
-
             </div>
-
           </div>
 
+          {/* POLICIES */}
+          <div>
+            <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-zinc-500 md:text-xs">
+              Policies
+            </p>
+
+            <nav className="flex flex-col gap-3.5 text-sm md:text-base">
+              <Link
+                href="/terms"
+                className="w-fit text-zinc-300 transition duration-300 hover:text-white"
+              >
+                Terms & Conditions
+              </Link>
+
+              <Link
+                href="/return-policy"
+                className="w-fit text-zinc-300 transition duration-300 hover:text-white"
+              >
+                Return Policy
+              </Link>
+
+              <Link
+                href="/privacy-policy"
+                className="w-fit text-zinc-300 transition duration-300 hover:text-white"
+              >
+                Privacy Policy
+              </Link>
+            </nav>
+          </div>
         </div>
 
-        {/* Bottom */}
-        <div className="border-t border-white/5 mt-20 md:mt-24 pt-8 md:pt-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 text-center md:text-left">
-
-          <p className="text-zinc-600 text-xs md:text-sm">
+        {/* BOTTOM BAR */}
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-7 text-center md:mt-14 md:flex-row md:text-left">
+          <p className="text-xs text-zinc-600 md:text-sm">
             © 2026 AUKSAF. All rights reserved.
           </p>
 
-          <p className="text-zinc-700 text-[10px] md:text-xs uppercase tracking-[0.3em]">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-700 md:text-xs">
             Modern Luxury Fragrance House
           </p>
-
         </div>
-
       </div>
     </footer>
   );

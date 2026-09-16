@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
+import MouseGlow from "@/components/MouseGlow";
 import Navbar from "@/components/Navbar";
 import { articles } from "@/content/articles";
 import { categories } from "@/content/categories";
@@ -92,7 +93,11 @@ export default async function CategoryPage({
     >
       <Navbar />
 
-      <section className="mx-auto max-w-5xl px-6 pb-20 pt-36 sm:pt-40">
+      <div className="hidden md:block">
+        <MouseGlow />
+      </div>
+
+      <section className="relative z-10 mx-auto max-w-5xl px-6 pb-20 pt-36 sm:pt-40">
         <header className="max-w-3xl">
           <div className="flex items-center justify-between gap-4">
             <Link

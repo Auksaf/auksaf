@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
+import MouseGlow from "@/components/MouseGlow";
 import { articles } from "@/content/articles";
 
 const baseUrl = "https://auksaf.com";
@@ -128,7 +129,11 @@ export default async function ArticlePage({
         }}
       />
 
-      <article className="mx-auto max-w-3xl px-6 pb-20 pt-36 sm:pt-40">
+      <div className="hidden md:block">
+        <MouseGlow />
+      </div>
+
+      <article className="relative z-10 mx-auto max-w-3xl px-6 pb-20 pt-36 sm:pt-40">
         <header>
           <div className="flex items-center justify-between gap-4">
             <Link
@@ -301,7 +306,9 @@ export default async function ArticlePage({
           )}
       </article>
 
-      <Footer />
+      <div dir="ltr">
+        <Footer />
+      </div>
     </main>
   );
 }
