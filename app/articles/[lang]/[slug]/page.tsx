@@ -175,17 +175,13 @@ export default async function ArticlePage({
           </p>
 
           <h1
-            className={`mt-5 text-5xl leading-tight md:text-6xl ${
-              isUrdu ? "font-gulzar" : ""
-            }`}
+            className="mt-5 text-5xl leading-tight md:text-6xl"
           >
             {content.title}
           </h1>
 
           <p
-            className={`mt-6 text-xl leading-8 text-[#C9C1B6] ${
-              isUrdu ? "font-gulzar" : ""
-            }`}
+            className="mt-6 text-xl leading-8 text-[#C9C1B6]"
           >
             {content.excerpt}
           </p>
@@ -209,9 +205,7 @@ export default async function ArticlePage({
           {content.sections.map((section) => (
             <section key={section.heading}>
               <h2
-                className={`text-3xl text-[#E9E4DC] ${
-                  isUrdu ? "font-gulzar" : ""
-                }`}
+                className="text-3xl text-[#E9E4DC]"
               >
                 {section.heading}
               </h2>
@@ -219,9 +213,7 @@ export default async function ArticlePage({
               {section.paragraphs.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className={`mt-4 ${
-                    isUrdu ? "font-gulzar" : ""
-                  }`}
+                  className="mt-4"
                 >
                   {paragraph}
                 </p>
@@ -284,17 +276,13 @@ export default async function ArticlePage({
                     <div key={relatedArticle.slug}>
                       <Link
                         href={`/articles/${language}/${relatedArticle.slug}`}
-                        className={`text-xl text-[#B08D57] hover:opacity-60 ${
-                          isUrdu ? "font-gulzar" : ""
-                        }`}
+                        className="text-xl text-[#B08D57] hover:opacity-60"
                       >
                         {relatedContent.title}
                       </Link>
 
                       <p
-                        className={`mt-1 text-sm leading-6 text-[#9F978D] ${
-                          isUrdu ? "font-gulzar" : ""
-                        }`}
+                        className="mt-1 text-sm leading-6 text-[#9F978D]"
                       >
                         {relatedContent.excerpt}
                       </p>
