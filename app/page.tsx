@@ -34,12 +34,12 @@ export default function Home() {
     flex
     items-center
     px-6
-    pt-20
-    sm:pt-24
+    pt-5
+    sm:pt-10
     overflow-hidden
   "
 >
-          <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16">
+          <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16">
 {/* Hero ambient atmosphere */}
 <div
   className="
@@ -150,7 +150,7 @@ export default function Home() {
       w-[300px]
       sm:w-[380px]
       md:w-[500px]
-      lg:w-[620px]
+      lg:w-[500px]
       h-[420px]
       sm:h-[520px]
       md:h-[700px]
@@ -179,7 +179,7 @@ export default function Home() {
 
     {/* Bottle */}
     <Image
-      src="/perfumes/rooh.png"
+      src="/perfumes/hero.png"
       alt="ROOH Perfume"
       fill
       priority
