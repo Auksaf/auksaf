@@ -10,7 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       disallow: [
         "/admin",
         "/test",
-        "/portfolio/nursery-demo",
       ],
     },
     sitemap: `${baseUrl}/sitemap.xml`,
